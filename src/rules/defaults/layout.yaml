@@ -1,0 +1,79 @@
+version: "1.0"
+category: "layout"
+description: "Default layout rules for PPT to HTML conversion"
+
+# Container settings
+container:
+  maxWidth: "1200px"
+  minWidth: "320px"
+  padding: "2rem"
+  margin: "0 auto"
+
+# Slide dimensions
+slide:
+  aspectRatio: "16:9"
+  width: "100%"
+  maxWidth: "1200px"
+  minHeight: "600px"
+  backgroundColor: "#ffffff"
+  border: "1px solid #e0e0e0"
+  borderRadius: "8px"
+  boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+  margin: "2rem auto"
+  padding: "3rem"
+
+# Spacing system
+spacing:
+  # Between slides
+  slideGap: "3rem"
+
+  # Between sections within a slide
+  sectionGap: "2rem"
+
+  # Between elements
+  elementGap: "1rem"
+
+  # Padding units
+  small: "0.5rem"
+  medium: "1rem"
+  large: "2rem"
+  xlarge: "3rem"
+
+# Grid system
+grid:
+  columns: 12
+  gutter: "1.5rem"
+  enabled: true
+
+# Responsive breakpoints
+breakpoints:
+  mobile: "480px"
+  tablet: "768px"
+  desktop: "1024px"
+  wide: "1440px"
+
+# Responsive behavior
+responsive:
+  enabled: true
+
+  mobile:
+    containerPadding: "1rem"
+    slidePadding: "1.5rem"
+    fontSize: "0.9rem"
+
+  tablet:
+    containerPadding: "1.5rem"
+    slidePadding: "2rem"
+    fontSize: "1rem"
+
+  desktop:
+    containerPadding: "2rem"
+    slidePadding: "3rem"
+    fontSize: "1rem"
+
+# Flexbox defaults
+flexbox:
+  defaultDirection: "column"
+  defaultAlign: "flex-start"
+  defaultJustify: "flex-start"
+  gap: "1rem"

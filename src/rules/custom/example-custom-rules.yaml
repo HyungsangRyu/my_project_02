@@ -1,0 +1,157 @@
+version: "1.0"
+category: "custom"
+description: "Example custom rules - customize these for your specific needs"
+metadata:
+  name: "Example Custom Rules"
+  author: "Your Name"
+  created: "2026-07-13"
+  usage: "Copy this file and modify to match your requirements"
+
+# Override layout settings
+layout:
+  container:
+    maxWidth: "1400px"  # Wider container
+    padding: "3rem"
+
+  slide:
+    backgroundColor: "#fafafa"  # Light gray background
+    border: "2px solid #0066cc"  # Blue border
+    borderRadius: "12px"
+
+# Override typography
+typography:
+  fonts:
+    primary: "'Inter', 'Segoe UI', sans-serif"  # Modern font
+
+  headings:
+    h1:
+      fontSize: "3rem"  # Larger titles
+      color: "#0066cc"  # Brand blue
+
+    h2:
+      fontSize: "2.25rem"
+      color: "#1a1a1a"
+
+  body:
+    fontSize: "1.125rem"  # Slightly larger body text
+    lineHeight: "1.8"
+
+# Override colors
+colors:
+  brand:
+    primary: "#0066cc"
+    secondary: "#00a86b"
+    accent: "#ff6b35"
+
+  # Add custom color mappings
+  pptColorMapping:
+    themeColors:
+      - ppt: "RGB(0,102,204)"
+        html: "#0066cc"
+        name: "Company Blue"
+        semantic: "primary"
+
+      - ppt: "RGB(255,107,53)"
+        html: "#ff6b35"
+        name: "Company Orange"
+        semantic: "accent"
+
+# Override component styles
+components:
+  textBox:
+    tag: "div"
+    className: "content-box"
+    styles:
+      default:
+        padding: "1.5rem"
+        backgroundColor: "#ffffff"
+        borderLeft: "4px solid #0066cc"
+
+  bulletList:
+    className: "custom-bullet-list"
+    styles:
+      default:
+        listStyleType: "none"  # Remove default bullets
+        paddingLeft: "0"
+
+      # Custom bullet with Unicode or emoji
+      item:
+        paddingLeft: "1.5rem"
+        # Add "▸" before each item via CSS ::before
+
+  callout:
+    tag: "aside"
+    className: "info-callout"
+    styles:
+      padding: "2rem"
+      backgroundColor: "#e6f2ff"
+      borderLeft: "6px solid #0066cc"
+      borderRadius: "8px"
+      marginBottom: "2rem"
+
+# Add custom component transformations
+custom:
+  logo:
+    tag: "div"
+    className: "company-logo"
+    position: "top-right"
+    styles:
+      position: "absolute"
+      top: "1rem"
+      right: "1rem"
+      maxWidth: "150px"
+
+  watermark:
+    tag: "div"
+    className: "watermark"
+    content: "Confidential"
+    styles:
+      position: "fixed"
+      bottom: "1rem"
+      right: "1rem"
+      opacity: "0.3"
+      fontSize: "0.875rem"
+      color: "#999"
+
+# Output preferences
+output:
+  minify: false
+  separateCSS: true
+  includeMetadata: true
+  responsive: true
+
+  # Custom CSS classes prefix
+  classPrefix: "ppt-"
+
+  # Additional features
+  features:
+    printStyles: true
+    darkMode: false
+    slideNavigation: true
+    slideNumbers: true
+
+# Accessibility overrides
+accessibility:
+  altTextRequired: true
+  ariaLabels: true
+  minContrastRatio: 4.5
+
+  # Auto-generate alt text for images without it
+  autoGenerateAltText: true
+  altTextTemplate: "Slide {slideNumber} - Image {imageIndex}"
+
+# Processing options
+processing:
+  # Skip certain slide types
+  skipSlides:
+    - "blank"
+    - "section-header"
+
+  # Merge consecutive text boxes
+  mergeTextBoxes: true
+
+  # Clean up excessive whitespace
+  normalizeWhitespace: true
+
+  # Convert smart quotes
+  convertSmartQuotes: false

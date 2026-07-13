@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="{{author}}">
+  {{#if created}}
+  <meta name="created" content="{{created}}">
+  {{/if}}
+  <title>{{title}}</title>
+
+  <style>
+{{{css}}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="presentation-header">
+      <h1>{{title}}</h1>
+      {{#if author}}
+      <p class="author">By {{author}}</p>
+      {{/if}}
+      <p class="slide-count">{{totalSlides}} slides</p>
+    </header>
+
+    <main class="presentation-content">
+      {{#each slides}}
+        {{> slide}}
+      {{/each}}
+    </main>
+
+    <footer class="presentation-footer">
+      <p>Generated from PowerPoint presentation</p>
+      {{#if created}}
+      <p>Original created: {{created}}</p>
+      {{/if}}
+    </footer>
+  </div>
+</body>
+</html>

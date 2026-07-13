@@ -1,0 +1,200 @@
+version: "1.0"
+category: "colors"
+description: "Default color transformation and mapping rules"
+
+# Brand colors
+brand:
+  primary: "#0066cc"
+  secondary: "#6c757d"
+  accent: "#28a745"
+  success: "#28a745"
+  warning: "#ffc107"
+  error: "#dc3545"
+  info: "#17a2b8"
+
+# Base colors
+base:
+  white: "#ffffff"
+  black: "#000000"
+
+# Grayscale
+grayscale:
+  50: "#f9fafb"
+  100: "#f3f4f6"
+  200: "#e5e7eb"
+  300: "#d1d5db"
+  400: "#9ca3af"
+  500: "#6b7280"
+  600: "#4b5563"
+  700: "#374151"
+  800: "#1f2937"
+  900: "#111827"
+
+# Semantic colors
+semantic:
+  background:
+    primary: "#ffffff"
+    secondary: "#f9fafb"
+    tertiary: "#f3f4f6"
+
+  text:
+    primary: "#111827"
+    secondary: "#4b5563"
+    tertiary: "#9ca3af"
+    inverted: "#ffffff"
+
+  border:
+    light: "#e5e7eb"
+    medium: "#d1d5db"
+    dark: "#9ca3af"
+
+  interactive:
+    default: "#0066cc"
+    hover: "#0052a3"
+    active: "#003d7a"
+    disabled: "#d1d5db"
+
+# PPT color mapping
+pptColorMapping:
+  # Common PPT theme colors to HTML
+  themeColors:
+    - ppt: "RGB(0,112,192)"
+      html: "#0070c0"
+      name: "Blue Accent 1"
+      semantic: "primary"
+
+    - ppt: "RGB(255,192,0)"
+      html: "#ffc000"
+      name: "Gold Accent 2"
+      semantic: "accent"
+
+    - ppt: "RGB(91,155,213)"
+      html: "#5b9bd5"
+      name: "Light Blue"
+      semantic: "info"
+
+    - ppt: "RGB(237,125,49)"
+      html: "#ed7d31"
+      name: "Orange"
+      semantic: "warning"
+
+    - ppt: "RGB(165,165,165)"
+      html: "#a5a5a5"
+      name: "Gray"
+      semantic: "secondary"
+
+    - ppt: "RGB(68,114,196)"
+      html: "#4472c4"
+      name: "Dark Blue"
+      semantic: "primary"
+
+    - ppt: "RGB(112,173,71)"
+      html: "#70ad47"
+      name: "Green"
+      semantic: "success"
+
+    - ppt: "RGB(255,0,0)"
+      html: "#ff0000"
+      name: "Red"
+      semantic: "error"
+
+  # Automatic color conversion
+  conversionRules:
+    # Convert RGB to HEX
+    rgbToHex: true
+
+    # Preserve exact colors or use nearest theme color
+    useNearestThemeColor: false
+    colorDistanceThreshold: 30
+
+    # Auto-adjust colors for web accessibility
+    ensureContrast: true
+    minContrastRatio: 4.5
+
+    # Convert to CSS color format
+    outputFormat: "hex"  # hex, rgb, hsl
+
+# Background colors
+backgrounds:
+  slide:
+    default: "#ffffff"
+    alternate: "#f9fafb"
+    dark: "#1f2937"
+
+  section:
+    default: "transparent"
+    highlighted: "#f3f4f6"
+
+  code:
+    default: "#f5f5f5"
+    dark: "#2d2d2d"
+
+# Gradient support
+gradients:
+  enabled: true
+
+  # Map PPT gradient to CSS gradient
+  conversionMethod: "linear-gradient"
+
+  # Default gradients
+  presets:
+    primary: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    secondary: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+    success: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+
+# Color utilities
+utilities:
+  # Opacity levels
+  opacity:
+    0: "0"
+    10: "0.1"
+    20: "0.2"
+    30: "0.3"
+    40: "0.4"
+    50: "0.5"
+    60: "0.6"
+    70: "0.7"
+    80: "0.8"
+    90: "0.9"
+    100: "1"
+
+  # Common overlays
+  overlays:
+    lightScrim: "rgba(255, 255, 255, 0.9)"
+    darkScrim: "rgba(0, 0, 0, 0.6)"
+
+# Dark mode support
+darkMode:
+  enabled: false
+
+  # Auto-convert colors for dark mode
+  autoConvert: true
+
+  overrides:
+    background:
+      primary: "#1f2937"
+      secondary: "#111827"
+
+    text:
+      primary: "#f9fafb"
+      secondary: "#d1d5db"
+
+    border:
+      light: "#374151"
+      medium: "#4b5563"
+
+# Accessibility
+accessibility:
+  # WCAG contrast requirements
+  contrastChecking: true
+  wcagLevel: "AA"  # AA or AAA
+
+  # Minimum contrast ratios
+  minContrast:
+    normalText: 4.5
+    largeText: 3.0
+    uiComponents: 3.0
+
+  # Auto-adjust non-compliant colors
+  autoFix: true
+  autoFixMethod: "darken"  # darken, lighten, findNearest

@@ -1,0 +1,19 @@
+<section class="slide" id="slide-{{slideNumber}}" {{#if backgroundColor}}style="background-color: {{backgroundColor}}"{{/if}}>
+  <header class="slide-header">
+    {{#if title}}
+    <h2>{{title}}</h2>
+    {{else}}
+    <h2>Slide {{slideNumber}}</h2>
+    {{/if}}
+  </header>
+
+  <div class="slide-body">
+    {{#each content}}
+      {{{this.html}}}
+    {{/each}}
+  </div>
+
+  <footer class="slide-footer">
+    <span class="slide-number">{{slideNumber}}</span>
+  </footer>
+</section>

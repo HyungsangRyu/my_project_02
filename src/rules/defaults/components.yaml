@@ -1,0 +1,418 @@
+version: "1.0"
+category: "components"
+description: "Component transformation rules for PPT elements to HTML"
+
+# Text box transformation
+textBox:
+  tag: "div"
+  className: "text-content"
+  preserveFormatting: true
+  attributes:
+    role: "article"
+
+  styles:
+    default:
+      padding: "1rem"
+      backgroundColor: "transparent"
+
+  # Text alignment from PPT
+  alignmentMapping:
+    left: "text-align: left"
+    center: "text-align: center"
+    right: "text-align: right"
+    justify: "text-align: justify"
+
+# Title box
+titleBox:
+  tag: "header"
+  className: "slide-title"
+  heading: "h2"
+
+  styles:
+    marginBottom: "2rem"
+    borderBottom: "2px solid #e5e7eb"
+    paddingBottom: "1rem"
+
+# Subtitle
+subtitle:
+  tag: "div"
+  className: "slide-subtitle"
+  heading: "h3"
+
+  styles:
+    color: "#6b7280"
+    marginBottom: "1.5rem"
+
+# Bullet lists
+bulletList:
+  tag: "ul"
+  className: "bullet-list"
+  itemTag: "li"
+  itemClassName: "bullet-item"
+
+  # Support nested lists
+  nestingSupport: true
+  maxNestingLevel: 4
+
+  styles:
+    default:
+      listStyleType: "disc"
+      paddingLeft: "1.5rem"
+      marginBottom: "1rem"
+
+    nested:
+      level1:
+        listStyleType: "disc"
+        marginTop: "0.5rem"
+      level2:
+        listStyleType: "circle"
+        marginTop: "0.5rem"
+      level3:
+        listStyleType: "square"
+        marginTop: "0.5rem"
+      level4:
+        listStyleType: "dash"
+        marginTop: "0.5rem"
+
+  item:
+    marginBottom: "0.5rem"
+    lineHeight: "1.6"
+
+# Numbered lists
+numberedList:
+  tag: "ol"
+  className: "numbered-list"
+  itemTag: "li"
+  itemClassName: "numbered-item"
+
+  nestingSupport: true
+
+  styles:
+    default:
+      listStyleType: "decimal"
+      paddingLeft: "1.5rem"
+      marginBottom: "1rem"
+
+    nested:
+      level1:
+        listStyleType: "decimal"
+      level2:
+        listStyleType: "lower-alpha"
+      level3:
+        listStyleType: "lower-roman"
+
+# Images
+image:
+  tag: "figure"
+  className: "slide-image"
+  imgTag: "img"
+  captionTag: "figcaption"
+
+  attributes:
+    loading: "lazy"
+    decoding: "async"
+
+  # Preserve aspect ratio
+  preserveAspectRatio: true
+
+  # Responsive images
+  responsive: true
+  responsiveBreakpoints:
+    - size: "768px"
+      maxWidth: "100%"
+    - size: "1024px"
+      maxWidth: "90%"
+    - size: "1440px"
+      maxWidth: "80%"
+
+  styles:
+    margin: "2rem auto"
+    textAlign: "center"
+
+  # Image formats
+  formats:
+    preferWebP: true
+    fallbackFormat: "png"
+
+  # Alt text
+  altText:
+    required: true
+    generateIfMissing: true
+    template: "Image from slide {slideNumber}"
+
+# Tables
+table:
+  tag: "div"
+  className: "table-wrapper"
+  tableTag: "table"
+  tableClassName: "data-table"
+
+  # Table structure
+  structure:
+    thead: true
+    tbody: true
+    tfoot: false
+
+  # Header row detection
+  headerRow:
+    enabled: true
+    detectByFormatting: true
+    firstRowIsHeader: true
+
+  # Styling
+  styles:
+    default:
+      borderCollapse: "collapse"
+      width: "100%"
+      marginBottom: "2rem"
+
+    cell:
+      padding: "0.75rem"
+      borderBottom: "1px solid #e5e7eb"
+
+    header:
+      backgroundColor: "#f9fafb"
+      fontWeight: "600"
+      textAlign: "left"
+
+  # Features
+  stripedRows: true
+  stripedColor: "#f9fafb"
+  hoverEffect: true
+  hoverColor: "#f3f4f6"
+
+  # Responsive table
+  responsive: true
+  responsiveMethod: "scroll"  # scroll, stack, cards
+
+# Shapes
+shapes:
+  # Rectangle
+  rectangle:
+    tag: "div"
+    className: "shape-rectangle"
+
+    styles:
+      borderRadius: "4px"
+      padding: "1rem"
+
+  # Circle/Ellipse
+  circle:
+    tag: "div"
+    className: "shape-circle"
+
+    styles:
+      borderRadius: "50%"
+      aspectRatio: "1"
+
+  # Rounded rectangle
+  roundedRectangle:
+    tag: "div"
+    className: "shape-rounded"
+
+    styles:
+      borderRadius: "12px"
+      padding: "1rem"
+
+  # Arrow
+  arrow:
+    tag: "span"
+    className: "shape-arrow"
+    useIcon: true
+    iconLibrary: "unicode"  # unicode, svg, icon-font
+
+    mapping:
+      right: "→"
+      left: "←"
+      up: "↑"
+      down: "↓"
+
+  # Line
+  line:
+    tag: "hr"
+    className: "shape-line"
+
+    styles:
+      border: "none"
+      borderTop: "2px solid currentColor"
+      margin: "2rem 0"
+
+# Charts (if PPT contains embedded charts)
+chart:
+  # Convert to static image or interactive chart
+  conversionMethod: "image"  # image, interactive, both
+
+  tag: "figure"
+  className: "chart-container"
+
+  # For interactive charts
+  interactive:
+    library: "chart.js"  # chart.js, d3, plotly
+    responsive: true
+
+  # For static images
+  image:
+    format: "svg"  # svg, png
+    quality: 90
+
+# SmartArt / Diagrams
+smartArt:
+  tag: "div"
+  className: "diagram"
+
+  # Conversion method
+  method: "structured-html"  # structured-html, svg, image
+
+  # For structured HTML
+  structuredHtml:
+    useFlexbox: true
+    useGrid: false
+
+  # For SVG
+  svg:
+    preserveAnimation: false
+    optimizePaths: true
+
+# Text callouts / annotations
+callout:
+  tag: "aside"
+  className: "callout"
+
+  types:
+    note:
+      className: "callout-note"
+      icon: "ℹ️"
+      backgroundColor: "#eff6ff"
+      borderColor: "#3b82f6"
+
+    warning:
+      className: "callout-warning"
+      icon: "⚠️"
+      backgroundColor: "#fffbeb"
+      borderColor: "#f59e0b"
+
+    tip:
+      className: "callout-tip"
+      icon: "💡"
+      backgroundColor: "#f0fdf4"
+      borderColor: "#10b981"
+
+  styles:
+    padding: "1rem 1.5rem"
+    borderLeft: "4px solid"
+    borderRadius: "4px"
+    marginBottom: "1.5rem"
+
+# Video / Media
+video:
+  tag: "figure"
+  className: "video-container"
+  videoTag: "video"
+
+  attributes:
+    controls: true
+    preload: "metadata"
+
+  # Aspect ratio wrapper
+  aspectRatio: "16:9"
+
+  # Fallback for unsupported formats
+  fallback:
+    enabled: true
+    message: "Your browser does not support this video format"
+
+# Audio
+audio:
+  tag: "figure"
+  className: "audio-container"
+  audioTag: "audio"
+
+  attributes:
+    controls: true
+    preload: "metadata"
+
+# Hyperlinks
+hyperlink:
+  tag: "a"
+  className: "link"
+
+  attributes:
+    target: "_blank"
+    rel: "noopener noreferrer"
+
+  # External link indicator
+  externalIndicator:
+    enabled: true
+    icon: "↗"
+    position: "after"
+
+  styles:
+    color: "#0066cc"
+    textDecoration: "underline"
+
+  # Hover state
+  hover:
+    color: "#0052a3"
+
+# Buttons (from PPT action buttons)
+button:
+  tag: "button"
+  className: "btn"
+
+  types:
+    primary:
+      className: "btn-primary"
+      backgroundColor: "#0066cc"
+      color: "#ffffff"
+
+    secondary:
+      className: "btn-secondary"
+      backgroundColor: "#6c757d"
+      color: "#ffffff"
+
+    outline:
+      className: "btn-outline"
+      backgroundColor: "transparent"
+      borderColor: "#0066cc"
+      color: "#0066cc"
+
+  styles:
+    padding: "0.75rem 1.5rem"
+    borderRadius: "6px"
+    border: "none"
+    cursor: "pointer"
+    fontSize: "1rem"
+    fontWeight: "500"
+
+# Footer
+footer:
+  tag: "footer"
+  className: "slide-footer"
+
+  elements:
+    pageNumber:
+      enabled: true
+      format: "Page {current} of {total}"
+
+    date:
+      enabled: true
+      format: "YYYY-MM-DD"
+
+    author:
+      enabled: false
+
+  styles:
+    marginTop: "3rem"
+    paddingTop: "1.5rem"
+    borderTop: "1px solid #e5e7eb"
+    fontSize: "0.875rem"
+    color: "#6b7280"
+
+# Custom components
+custom:
+  # Define custom component mappings here
+  # Example:
+  # companyLogo:
+  #   tag: "div"
+  #   className: "company-logo"
+  #   position: "top-right"
