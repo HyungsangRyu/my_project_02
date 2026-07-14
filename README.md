@@ -1,7 +1,6 @@
-# PPT to HTML Agent
+# PPT to HTML Agent (node.js)
 
 AI-powered PPT to HTML conversion agent using Claude with rule-based transformation system.
-(node.js)
 
 ## 🎯 Overview
 
